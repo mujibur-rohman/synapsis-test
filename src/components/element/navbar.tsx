@@ -17,7 +17,7 @@ function Navbar() {
         <div className="flex gap-3">
           <Button asChild>
             <Link
-              href="/user"
+              href="/users"
               className={cn("text-blue-500", {
                 "font-bold": pathname === "/staff",
               })}

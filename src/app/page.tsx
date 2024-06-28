@@ -38,7 +38,6 @@ export default function Home() {
       <div>
         <span className="text-xl font-medium">Blogs</span>
       </div>
-
       {isLoading ? (
         <div className="grid gap-3 grid-cols-1 md:grid-cols-2">
           <Skeleton className="h-32 w-full" />
@@ -55,7 +54,7 @@ export default function Home() {
       ) : posts?.totalData === 0 ? (
         <div className="flex justify-center">
           <div className="text-center space-y-2">
-            <p>Data Kosong</p>
+            <p>Empty</p>
           </div>
         </div>
       ) : (
