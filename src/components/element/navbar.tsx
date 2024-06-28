@@ -3,12 +3,13 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "../button";
 import { cn } from "@/utils/clsx";
+import Wrapper from "./wrapper";
 
 function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
   return (
-    <nav className="flex justify-between items-center px-4 bg-white border-b h-12">
+    <Wrapper className="sticky top-0 flex justify-between items-center px-4 bg-white border-b h-12">
       <Link href="/" className="text-primary font-semibold">
         Synapsis Test
       </Link>
@@ -16,7 +17,7 @@ function Navbar() {
         <div className="flex gap-3">
           <Button asChild>
             <Link
-              href="/staff"
+              href="/user"
               className={cn("text-blue-500", {
                 "font-bold": pathname === "/staff",
               })}
@@ -24,14 +25,6 @@ function Navbar() {
               Go To User &gt;&gt;
             </Link>
           </Button>
-          <Link
-            href="/divisi"
-            className={cn("text-blue-500", {
-              "font-bold": pathname === "/divisi",
-            })}
-          >
-            Divisi
-          </Link>
         </div>
         <Button
           onClick={async () => {
@@ -42,7 +35,7 @@ function Navbar() {
           Logout
         </Button>
       </div>
-    </nav>
+    </Wrapper>
   );
 }
 
