@@ -51,7 +51,7 @@ export default function Home() {
         </div>
       ) : isError && !isFetching ? (
         <ErrorRender refetch={refetch} />
-      ) : posts?.totalData === 0 ? (
+      ) : posts?.meta?.pagination.total === 0 ? (
         <div className="flex justify-center">
           <div className="text-center space-y-2">
             <p>Empty</p>
@@ -65,7 +65,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-5 flex justify-center">
-            <Paginate currentPage={parseInt(page)} handlePageChange={handlePageChange} totalPages={posts?.totalPages} visiblePage={3} />
+            <Paginate currentPage={parseInt(page)} handlePageChange={handlePageChange} totalPages={posts?.meta?.pagination.pages} visiblePage={3} />
           </div>
         </>
       )}

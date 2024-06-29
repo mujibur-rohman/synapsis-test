@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: PropsMetaData): Promise<Metad
 
   // Dynamic metadata
   return {
-    title: blog.title,
-    description: blog.body,
+    title: blog.data.title,
+    description: blog.data.body,
   };
 }
 
@@ -44,10 +44,10 @@ async function DetailBlog({ params }: PropsComponent) {
   return (
     <Wrapper className="py-8">
       <p className="text-xl font-bold">Title</p>
-      <p>{blog.body}</p>
+      <p>{blog.data.body}</p>
       <div className="my-5">
         <p className="border-b pb-2 font-semibold text-lg">Comments</p>
-        <CommentList postId={blog.id} />
+        <CommentList postId={blog.data.id} />
       </div>
     </Wrapper>
   );

@@ -4,7 +4,7 @@ import { cn } from "@/utils/clsx";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../dialog";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../dropdown-menu";
 import { Button } from "../button";
 import { Edit3Icon, EllipsisVerticalIcon, Loader2Icon, TrashIcon } from "lucide-react";
@@ -29,50 +29,43 @@ function UserCard({ user }: Props) {
     setOpenDialog(value);
   };
 
-  const renderContent = (val: typeof typeAction) => {
-    switch (val) {
-      case "edit":
-        router.push(`/users/edit/${user.id}`);
-      case "delete":
-        return (
-          <>
-            <DialogHeader>
-              <DialogTitle>Delete User</DialogTitle>
-              <DialogDescription>Are you sure?</DialogDescription>
-            </DialogHeader>
-            <DialogFooter className="flex flex-col md:flex-row gap-3 md:gap-0">
-              <DialogClose asChild>
-                <Button variant="secondary" className="w-20 text-foreground" size="sm">
-                  Batal
-                </Button>
-              </DialogClose>
-              <Button
-                className="w-20"
-                disabled={isLoading}
-                onClick={async () => {
-                  try {
-                    setLoading(true);
-                    await UserService.delete(user.id);
-                    toast.success("Delete Successfully!");
-                    queryClient.invalidateQueries({ queryKey: ["users", page] });
-                    queryClient.invalidateQueries({ queryKey: ["users"] });
-                    setOpenDialog(false);
-                  } catch (error: any) {
-                    errorResponse(error);
-                  } finally {
-                    setLoading(false);
-                  }
-                }}
-                size="sm"
-              >
-                {isLoading ? <Loader2Icon className="animate-spin" /> : "Yes"}
-              </Button>
-            </DialogFooter>
-          </>
-        );
-      default:
-        return <div>-</div>;
-    }
+  const renderAction = () => {
+    return (
+      <>
+        <DialogHeader>
+          <DialogTitle>Delete User</DialogTitle>
+          <DialogDescription>Are you sure?</DialogDescription>
+        </DialogHeader>
+        <DialogFooter className="flex flex-col md:flex-row gap-3 md:gap-0">
+          <DialogClose asChild>
+            <Button variant="secondary" className="w-20 text-foreground" size="sm">
+              Batal
+            </Button>
+          </DialogClose>
+          <Button
+            className="w-20"
+            disabled={isLoading}
+            onClick={async () => {
+              try {
+                setLoading(true);
+                await UserService.delete(user.id);
+                toast.success("Delete Successfully!");
+                queryClient.invalidateQueries({ queryKey: ["users", page] });
+                queryClient.invalidateQueries({ queryKey: ["users"] });
+                setOpenDialog(false);
+              } catch (error: any) {
+                errorResponse(error);
+              } finally {
+                setLoading(false);
+              }
+            }}
+            size="sm"
+          >
+            {isLoading ? <Loader2Icon className="animate-spin" /> : "Yes"}
+          </Button>
+        </DialogFooter>
+      </>
+    );
   };
 
   return (
@@ -103,17 +96,14 @@ function UserCard({ user }: Props) {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DialogTrigger className="w-full">
-                <DropdownMenuItem
-                  onClick={() => {
-                    setTypeAction("edit");
-                    setOpenDialog(true);
-                  }}
-                  className="flex items-center gap-2 cursor-pointer"
-                >
-                  <Edit3Icon className="w-4 h-4 text-foreground" /> Edit
-                </DropdownMenuItem>
-              </DialogTrigger>
+              <DropdownMenuItem
+                onClick={() => {
+                  router.push(`/users/edit/${user.id}`);
+                }}
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                <Edit3Icon className="w-4 h-4 text-foreground" /> Edit
+              </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => {
                   setOpenDialog(true);
@@ -125,13 +115,7 @@ function UserCard({ user }: Props) {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <DialogContent
-            className={cn("sm:max-w-[425px]", {
-              "sm:max-w-[425px] md:max-w-[40rem] lg:max-w-[50rem] max-h-[80vh] overflow-auto": typeAction === "edit",
-            })}
-          >
-            {renderContent(typeAction)}
-          </DialogContent>
+          <DialogContent className={cn("sm:max-w-[425px]")}>{renderAction()}</DialogContent>
         </Dialog>
       </div>
     </div>

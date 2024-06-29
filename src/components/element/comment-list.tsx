@@ -35,7 +35,7 @@ function CommentList({ postId }: Props) {
         </div>
       ) : isError && !isFetching ? (
         <ErrorRender refetch={refetch} />
-      ) : comments?.length === 0 ? (
+      ) : comments?.meta?.pagination.total === 0 ? (
         <div className="flex justify-center">
           <div className="text-center space-y-2">
             <p>No comment</p>
@@ -44,7 +44,7 @@ function CommentList({ postId }: Props) {
       ) : (
         <>
           <div className="space-y-3">
-            {comments?.map((comment) => (
+            {comments?.data.map((comment) => (
               <div key={comment.id} className="bg-gray-100 p-3 rounded-lg">
                 <p className="font-bold text-primary">{comment.name}</p>
                 <p>{comment.body}</p>

@@ -1,23 +1,19 @@
 import axiosConfig from "@/config/axios";
-import { CommentType, PostType, RequestParamsGetPost, ResponseMockupPaginate } from "@/types";
+import { CommentType, PostType, RequestParamsGetPost, ResponseMockup } from "@/types";
 
 const PostService = {
-  getAll: async (params: RequestParamsGetPost): Promise<ResponseMockupPaginate<PostType>> => {
-    const response = await axiosConfig.get<PostType[]>("/posts", {
+  getAll: async (params: RequestParamsGetPost) => {
+    const response = await axiosConfig.get<ResponseMockup<PostType[]>>("/posts", {
       params,
     });
-    return {
-      totalPages: response.headers["x-pagination-pages"],
-      totalData: response.headers["x-pagination-total"],
-      data: response.data,
-    };
+    return response.data;
   },
   getOne: async (id: number) => {
-    const response = await axiosConfig.get<PostType>(`/posts/${id}`);
+    const response = await axiosConfig.get<ResponseMockup<PostType>>(`/posts/${id}`);
     return response.data;
   },
   getComments: async (postId: number) => {
-    const response = await axiosConfig.get<CommentType[]>(`/posts/${postId}/comments`);
+    const response = await axiosConfig.get<ResponseMockup<CommentType[]>>(`/posts/${postId}/comments`);
     return response.data;
   },
 };
