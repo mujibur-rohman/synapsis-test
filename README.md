@@ -1,4 +1,4 @@
-#Synapsis Test
+# Synapsis Test
 ## Techstack
 
 - Next Js v 14.2.4
