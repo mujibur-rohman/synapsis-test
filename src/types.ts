@@ -35,11 +35,6 @@ export type RequestParamsGetUsers = {
   name?: string;
 };
 
-export interface ResponseMockupPaginate<T> {
-  totalPages: number;
-  totalData: number;
-  data: T[];
-}
 export interface ResponseMockup<T> {
   meta: {
     pagination: {

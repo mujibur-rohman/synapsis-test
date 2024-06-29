@@ -1,5 +1,5 @@
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
-import { Button } from "../button";
+import { Button } from "../ui/button";
 
 function ErrorRender({ refetch }: { refetch: (options?: RefetchOptions | undefined) => Promise<QueryObserverResult<any, Error>> }) {
   return (

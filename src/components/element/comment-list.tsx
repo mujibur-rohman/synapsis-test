@@ -2,7 +2,7 @@
 
 import PostService from "@/services/post.service";
 import { useQuery } from "@tanstack/react-query";
-import { Skeleton } from "../skeleton";
+import { Skeleton } from "../ui/skeleton";
 import ErrorRender from "./error-render";
 
 type Props = {

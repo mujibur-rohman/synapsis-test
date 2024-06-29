@@ -1,7 +1,7 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { Button } from "../button";
+import { Button } from "../ui/button";
 import { cn } from "@/utils/clsx";
 import Wrapper from "./wrapper";
 
@@ -26,14 +26,6 @@ function Navbar() {
             </Link>
           </Button>
         </div>
-        <Button
-          onClick={async () => {
-            router.replace("/auth");
-          }}
-          variant="destructive"
-        >
-          Logout
-        </Button>
       </div>
     </Wrapper>
   );
