@@ -72,9 +72,7 @@ function UserCard({ user }: Props) {
     <div className="flex justify-between items-center p-3 rounded-lg border">
       <div className="space-y-1">
         <p className="font-bold">{user.name}</p>
-        <p className="capitalize text-sm text-gray-400">
-          {user.gender} | {user.email}
-        </p>
+        <p className="capitalize text-sm text-gray-400">{user.gender}</p>
       </div>
       <div className="flex gap-3">
         <div className="flex gap-3 items-center capitalize">
