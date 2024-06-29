@@ -10,14 +10,14 @@
 
 ## Folder Stucture
 
-Semua source ditempatkan pada folder `src`
-- /app : Semua halaman berada dalam folder ini sekaligus routingnya, ini adalah folder bawaan dari next js jika menggunakan Router App
-- /components : Untuk menempatkan semua komponen yang akan di reuse pada halaman
-- /config : Untuk hal-hal yang perlu dikonfigurasi, disini saya menempatkan axios config. 
-- /hooks : Untuk menyimpan semua custom hook, disini saya membuat   useDebounce untuk mendelay aksi input onChange.
-- /providers : Saya membuat query provider untuk react query.
-- /schema : Untuk menyimpan schema user dan post form serta validasnya.
-- /service : Pada folder ini saya membuat service API yang nantinya akan di fetching
-- /utils : Di folder ini saya membuat library untuk pengkondisian CSS dan response error.
-- /enum.ts : Untuk menyimpan enum data
-- /types : Untuk menyiapkan semua struktur data dengan type dan interface
+All sources are placed in the `src` folder
+- /app: All pages are in this folder along with their routing, this is the default folder from Next.js if using the App Router
+- /components: To place all the components that will be reused on the pages
+- /config: For things that need to be configured, here I place the axios config
+- /hooks: To store all custom hooks, here I created useDebounce to delay the input onChange action
+- /providers: I created a query provider for react-query
+- /schema: To store the user and post form schemas along with their validations
+- /service: In this folder, I created the API service that will be fetched later
+- /utils: In this folder, I created a library for CSS conditioning and error responses
+- /enum.ts: To store enum data
+- /types: To prepare all data structures with types and interfaces
