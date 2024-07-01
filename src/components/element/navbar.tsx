@@ -9,7 +9,7 @@ function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
   return (
-    <Wrapper className="sticky top-0 flex justify-between items-center px-4 bg-white border-b h-12">
+    <Wrapper className="sticky z-[100] top-0 flex justify-between items-center px-4 bg-white border-b h-12">
       <Link href="/" className="text-primary font-semibold">
         Synapsis Test
       </Link>
